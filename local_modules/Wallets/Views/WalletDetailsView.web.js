@@ -1,7 +1,7 @@
 'use strict'
 
-const monero_config = require('@mymonero/mymonero-monero-config')
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger
+const beldex_config = require('@bdxi/beldex-config')
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger
 const View = require('../../Views/View.web')
 const commonComponents_navigationBarButtons = require('../../MMAppUICommonComponents/navigationBarButtons.web')
 const commonComponents_tables = require('../../MMAppUICommonComponents/tables.web')
@@ -13,7 +13,7 @@ const StackAndModalNavigationView = require('../../StackNavigation/Views/StackAn
 const TransactionDetailsView = require('./TransactionDetailsView.web')
 const FundsRequestQRDisplayView = require('../../RequestFunds/Views/FundsRequestQRDisplayView.web')
 const Currencies = require('../../CcyConversionRates/Currencies')
-const monero_amount_format_utils = require('@mymonero/mymonero-money-format')
+const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
 
 class WalletDetailsView extends View {
   constructor (options, context) {
@@ -141,7 +141,7 @@ class WalletDetailsView extends View {
       if (displayCcySymbol == Currencies.ccySymbolsByCcy.XMR) {
         // NOTE: checking if ccy is XMR again to catch displayCurrencyAmountDouble_orNull=null fallthrough case from alt display ccy
         const raw_balanceString = wallet.Balance_FormattedString()
-        const coinUnitPlaces = monero_config.coinUnitPlaces
+        const coinUnitPlaces = beldex_config.coinUnitPlaces
         const raw_balanceString__components = raw_balanceString.split('.')
         if (raw_balanceString__components.length == 1) {
           const balance_aspect_integer = raw_balanceString__components[0]
@@ -863,7 +863,7 @@ class WalletDetailsView extends View {
             //
             const received_JSBigInt = tx.total_received ? (typeof tx.total_received === 'string' ? new JSBigInt(tx.total_received) : tx.total_received) : new JSBigInt('0')
             const sent_JSBigInt = tx.total_sent ? (typeof tx.total_sent === 'string' ? new JSBigInt(tx.total_sent) : tx.total_sent) : new JSBigInt('0')
-            div.innerHTML = monero_amount_format_utils.formatMoney(received_JSBigInt.subtract(sent_JSBigInt))
+            div.innerHTML = beldex_amount_format_utils.formatMoney(received_JSBigInt.subtract(sent_JSBigInt))
           }
           { // Date
             const div = document.createElement('div')
@@ -1139,7 +1139,7 @@ class WalletDetailsView extends View {
       function (tx, i) {
         const received_JSBigInt = tx.total_received ? (typeof tx.total_received === 'string' ? new JSBigInt(tx.total_received) : tx.total_received) : new JSBigInt('0')
         const sent_JSBigInt = tx.total_sent ? (typeof tx.total_sent === 'string' ? new JSBigInt(tx.total_sent) : tx.total_sent) : new JSBigInt('0')
-        const amountString = monero_amount_format_utils.formatMoney(received_JSBigInt.subtract(sent_JSBigInt))
+        const amountString = beldex_amount_format_utils.formatMoney(received_JSBigInt.subtract(sent_JSBigInt))
         //
         const payment_id = `${tx.payment_id || ''}`
         const status = `${tx.isFailed ? 'REJECTED' : (tx.isConfirmed !== true || tx.isUnlocked !== true ? 'PENDING' : 'CONFIRMED')}`

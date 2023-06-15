@@ -9,7 +9,7 @@ const Currencies = require('../../CcyConversionRates/Currencies')
 
 const k_defaults_record =
 {
-  specificAPIAddressURLAuthority: 'https://api.mymonero.com',
+  specificAPIAddressURLAuthority: 'https://api.beldex.dev',
   appTimeoutAfterS: 3 * 60, // 3 mins
   invisible_hasAgreedToTermsOfCalculatedEffectiveMoneroAmount: false,
   displayCcySymbol: Currencies.ccySymbolsByCcy.XMR, // default
@@ -72,7 +72,7 @@ class SettingsController extends EventEmitter {
     function _proceedTo_loadStateFromRecord (record_doc) {
       self._id = record_doc._id || undefined
       //
-      self.specificAPIAddressURLAuthority = (record_doc.specificAPIAddressURLAuthority === '') ? 'https://api.mymonero.com' : record_doc.specificAPIAddressURLAuthority
+      self.specificAPIAddressURLAuthority = (record_doc.specificAPIAddressURLAuthority === '') ? 'https://api.beldex.dev' : record_doc.specificAPIAddressURLAuthority
       self.appTimeoutAfterS = record_doc.appTimeoutAfterS
       self.invisible_hasAgreedToTermsOfCalculatedEffectiveMoneroAmount = record_doc.invisible_hasAgreedToTermsOfCalculatedEffectiveMoneroAmount
       self.displayCcySymbol = record_doc.displayCcySymbol

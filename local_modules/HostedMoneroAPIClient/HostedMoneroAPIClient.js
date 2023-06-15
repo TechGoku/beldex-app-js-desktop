@@ -1,6 +1,6 @@
 'use strict'
 
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger // important: grab defined export
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger // important: grab defined export
 const net_service_utils = require('@mymonero/mymonero-net-service-utils')
 
 class HostedMoneroAPIClient {

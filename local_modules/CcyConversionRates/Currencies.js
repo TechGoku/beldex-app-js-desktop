@@ -1,63 +1,25 @@
 'use strict'
 
-const monero_config = require('@mymonero/mymonero-monero-config')
-const monero_amount_format_utils = require('@mymonero/mymonero-money-format')
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger
+const beldex_config = require('@bdxi/beldex-config')
+const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger
 
 const ccySymbolsByCcy = exports.ccySymbolsByCcy =
 {
-  XMR: 'XMR', // included for completeness / convenience / API
-  USD: 'USD',
-  AUD: 'AUD',
-  BRL: 'BRL',
-  CAD: 'CAD',
-  CHF: 'CHF',
-  CNY: 'CNY',
-  EUR: 'EUR',
-  GBP: 'GBP',
-  HKD: 'HKD',
-  INR: 'INR',
-  JPY: 'JPY',
-  KRW: 'KRW',
-  MXN: 'MXN',
-  NOK: 'NOK',
-  NZD: 'NZD',
-  SEK: 'SEK',
-  SGD: 'SGD',
-  TRY: 'TRY',
-  RUB: 'RUB',
-  ZAR: 'ZAR'
+  XMR: 'BDX' // included for completeness / convenience / API
+
 }
 const allOrderedCurrencySymbols = exports.allOrderedCurrencySymbols =
 [
   ccySymbolsByCcy.XMR, // included for completeness / convenience / API
-  ccySymbolsByCcy.USD,
-  ccySymbolsByCcy.AUD,
-  ccySymbolsByCcy.BRL,
-  ccySymbolsByCcy.CAD,
-  ccySymbolsByCcy.CHF,
-  ccySymbolsByCcy.CNY,
-  ccySymbolsByCcy.EUR,
-  ccySymbolsByCcy.GBP,
-  ccySymbolsByCcy.HKD,
-  ccySymbolsByCcy.INR,
-  ccySymbolsByCcy.JPY,
-  ccySymbolsByCcy.KRW,
-  ccySymbolsByCcy.MXN,
-  ccySymbolsByCcy.NOK,
-  ccySymbolsByCcy.NZD,
-  ccySymbolsByCcy.SEK,
-  ccySymbolsByCcy.SGD,
-  ccySymbolsByCcy.TRY,
-  ccySymbolsByCcy.RUB,
-  ccySymbolsByCcy.ZAR
+  
 ]
 const hasAtomicUnits = exports.hasAtomicUnits = function (ccySymbol) {
   return (ccySymbol == ccySymbolsByCcy.XMR)
 }
 const unitsForDisplay = exports.unitsForDisplay = function (ccySymbol) {
   if (ccySymbol == ccySymbolsByCcy.XMR) {
-    return monero_config.coinUnitPlaces
+    return beldex_config.coinUnitPlaces
   }
   return 2
 }
@@ -181,7 +143,7 @@ exports.displayStringComponentsFrom = function (
   displayCcySymbol
 ) {
   const XMR = ccySymbolsByCcy.XMR
-  const xmr_amount_str = monero_amount_format_utils.formatMoney(xmr_amount_JSBigInt)
+  const xmr_amount_str = beldex_amount_format_utils.formatMoney(xmr_amount_JSBigInt)
   if (displayCcySymbol != XMR) {
     // TODO: using doubles here is not very good, and must be replaced with JSBigInts to support small amounts
     const xmr_amount_double = parseFloat(xmr_amount_str)

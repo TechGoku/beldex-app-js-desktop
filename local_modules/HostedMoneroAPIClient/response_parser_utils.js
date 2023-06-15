@@ -1,8 +1,8 @@
 'use strict'
 
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger
-const monero_amount_format_utils = require('@mymonero/mymonero-money-format')
-const monero_keyImage_cache_utils = require('@mymonero/mymonero-keyimage-cache')
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger
+const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
+const monero_keyImage_cache_utils = require('@bdxi/beldex-keyimage-cache')
 
 function Parsed_AddressInfo__keyImageManaged (data, address, view_key__private, spend_key__public, spend_key__private, coreBridge_instance, fn) {
   const keyImageCache = monero_keyImage_cache_utils.Lazy_KeyImageCacheForWalletWith(address)
@@ -107,7 +107,7 @@ function Parsed_AddressTransactions__keyImageManaged (data, address, view_key__p
       .subtract(transactions[i].total_sent || 0)
       .toString()
     transactions[i].approx_float_amount = parseFloat(
-      monero_amount_format_utils.formatMoney(transactions[i].amount)
+      beldex_amount_format_utils.formatMoney(transactions[i].amount)
     )
     transactions[i].timestamp = transactions[i].timestamp
     const record__payment_id = transactions[i].payment_id

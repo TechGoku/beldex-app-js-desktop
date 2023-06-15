@@ -1,6 +1,6 @@
 ---
 name: Feature Request
-about: Suggest an idea for MyMonero Desktop
+about: Suggest an idea for Beldex Desktop
 ---
 
 ### Describe your feature request

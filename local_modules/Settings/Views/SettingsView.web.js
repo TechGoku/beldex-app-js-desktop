@@ -282,7 +282,7 @@ class SettingsView extends View {
       div.appendChild(layer)
 
       const valueLayer = commonComponents_forms.New_fieldValue_textInputLayer(self.context, {
-        placeholderText: 'Leave blank to use mymonero.com'
+        placeholderText: 'Leave blank to use Beldex'
       })
       valueLayer.autocomplete = 'off'
       valueLayer.autocorrect = 'off'
@@ -688,9 +688,9 @@ class SettingsView extends View {
       if (self.serverURLInputLayer) {
         self.serverURLInputLayer.value = self.context.settingsController.specificAPIAddressURLAuthority || ''
         if (self.context.settingsController.specificAPIAddressURLAuthority === 'https://api.beldex.dev') {
-          self.serverURL_setSuccessMessage('Set to mymonero.com')
+          self.serverURL_setSuccessMessage('Set to api.beldex.dev')
         } else {
-          self.serverURL_setSuccessMessage('Custom server url set. Set to https://api.beldex.dev to use mymonero.com')
+          self.serverURL_setSuccessMessage('Custom server url set. Set to https://api.beldex.dev to use Beldex')
         }
       }
       // and now that the value is set…
@@ -852,9 +852,9 @@ class SettingsView extends View {
                 }
                 self.serverURL_connecting_activityIndicatorLayer.style.display = 'none' // hide
                 if (self.context.settingsController.specificAPIAddressURLAuthority === 'https://api.beldex.dev') {
-                  self.serverURL_setSuccessMessage('Set to mymonero.com')
+                  self.serverURL_setSuccessMessage('Set to api.beldex.dev')
                 } else {
-                  self.serverURL_setSuccessMessage('Custom server url set. Set to https://api.beldex.dev to use mymonero.com')
+                  self.serverURL_setSuccessMessage('Custom server url set. Set to https://api.beldex.dev to use beldex')
                 }
               }
             )

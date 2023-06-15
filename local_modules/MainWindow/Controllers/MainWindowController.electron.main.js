@@ -55,7 +55,7 @@ class MainWindowController {
 		  height: 640,
 		  minWidth: 595, // For action buttons
 		  minHeight: 640,
-		  title: 'MyMonero', // Windows
+		  title: 'MyBeldex', // Windows
 		  show: false, // shown on ready
 		  backgroundColor: '#272527',
 		  titleBarStyle: 'hiddenInset',
@@ -122,7 +122,7 @@ class MainWindowController {
     })
     window.on('page-title-updated', function (e, title) {
       // prevent system from changing the name of the window - may be relevant on platforms like Linux
-      if (title !== 'MyMonero') {
+      if (title !== 'MyBeldex') {
         e.preventDefault()
       }
     })

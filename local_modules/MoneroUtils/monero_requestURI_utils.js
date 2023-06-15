@@ -89,7 +89,7 @@ function New_ParsedPayload_FromPossibleRequestURIString (string, nettype, monero
         nettype
       )
     } catch (e) {
-      throw Error('No Monero request info')
+      throw Error('No MyBeldex request info')
     }
     // then it looks like a monero address
     return {

@@ -11,7 +11,7 @@ class ModalStandaloneAboutView extends RootView {
   //
   // Runtime - Accessors - Navigation
   Navigation_Title () {
-    return 'About MyMonero'
+    return 'About Beldex'
   }
 
   Navigation_New_LeftBarButtonView () {

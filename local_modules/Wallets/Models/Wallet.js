@@ -901,7 +901,7 @@ class Wallet extends EventEmitter {
 
   IsTransactionConfirmed (tx) {
     const self = this
-    const blockchain_height = self.blockchain_height
+    const blockchain_height = self.account_scanned_block_height
     //
     return monero_txParsing_utils.IsTransactionConfirmed(tx, blockchain_height)
   }

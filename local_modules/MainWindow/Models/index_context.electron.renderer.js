@@ -27,7 +27,7 @@ const Electron = require("electron")
 function NewHydratedContext (app, menuController, urlOpeningController, appUpdatesController, monero_utils) {
   const initialContext =
   {
-    nettype: require('@mymonero/mymonero-nettype').network_type.MAINNET, // critical setting
+    nettype: require('@bdxi/beldex-nettype').network_type.TESTNET, // critical setting
     app: app,
     menuController: menuController,
     appUpdatesController: appUpdatesController,

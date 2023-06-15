@@ -1,6 +1,6 @@
 'use strict'
 
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger
 
 class WalletInfo {
   // constructor(address, viewKeyPrivate, spendKeyPublic, spendKeyPrivate) {

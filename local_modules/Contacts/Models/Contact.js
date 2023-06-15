@@ -4,7 +4,7 @@ const EventEmitter = require('events')
 const Emojis = require('../../Emoji/emoji_set').Emojis
 const persistable_object_utils = require('../../DocumentPersister/persistable_object_utils')
 const contact_persistence_utils = require('./contact_persistence_utils')
-const monero_paymentID_utils = require('@mymonero/mymonero-paymentid-utils')
+const paymentTool = require('@bdxi/beldex-paymentid-utils')
 const monero_requestURI_utils = require('../../MoneroUtils/monero_requestURI_utils')
 const QRCode = require('qrcode')
 
@@ -232,7 +232,7 @@ class Contact extends EventEmitter {
     if (payment_id == null || payment_id == '' || typeof payment_id === 'undefined') {
       return null // no possible derived int address
     }
-    if (monero_paymentID_utils.IsValidShortPaymentID(payment_id) == false) {
+    if (paymentTool.IsValidShortPaymentID(payment_id) == false) {
       return null // must be a long payment ID
     }
     if (self.HasIntegratedAddress()) {

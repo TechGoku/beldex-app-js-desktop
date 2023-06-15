@@ -15,20 +15,20 @@ const commonComponents_actionButtons = require('../../MMAppUICommonComponents/ac
 
 const JustSentTransactionDetailsView = require('./JustSentTransactionDetailsView.web')
 
-const monero_sendingFunds_utils = require('@mymonero/mymonero-sendfunds-utils')
+const utils = require('@bdxi/beldex-sendfunds-utils')
 const monero_openalias_utils = require('../../OpenAlias/monero_openalias_utils')
-const monero_config = require('@mymonero/mymonero-monero-config')
-const monero_amount_format_utils = require('@mymonero/mymonero-money-format')
+const beldex_config = require('@bdxi/beldex-config')
+const beldex_amount_format_utils = require('@bdxi/beldex-money-format')
 
 const jsQR = require('jsqr')
 const monero_requestURI_utils = require('../../MoneroUtils/monero_requestURI_utils')
 
 const Currencies = require('../../CcyConversionRates/Currencies')
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger // important: grab defined export
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger // important: grab defined export
 
 const rateServiceDomainText = 'cryptocompare.com'
 // Yat import
-const YatMoneroLookup = require('@mymonero/mymonero-yat-lookup')
+const YatMoneroLookup = require('@bdxi/beldex-yat-lookup')
 
 const yatMoneroLookup = new YatMoneroLookup({})
 
@@ -241,7 +241,7 @@ class SendFundsView extends View {
       breakingDiv.appendChild(layer)
     }
     {
-      const tooltipText = 'Based on Monero network<br/>fee estimate (not final).<br/><br/>MyMonero does not charge<br/>a transfer service fee.'
+      const tooltipText = 'Based on Monero network<br/>fee estimate (not final).<br/><br/>MyBeldex does not charge<br/>a transfer service fee.'
       const view = commonComponents_tooltips.New_TooltipSpawningButtonView(tooltipText, self.context)
       const layer = view.layer
       breakingDiv.appendChild(layer)
@@ -436,15 +436,13 @@ class SendFundsView extends View {
       //
       const selectLayer = document.createElement('select')
       {
-        const defaultValue = monero_sendingFunds_utils.default_priority()
+        const defaultValue = utils.default_priority()
         const values =
 				[
 				  1,
-				  2,
-				  3,
-				  4
+				  5
 				]
-        const descriptions = ['Low', 'Medium', 'High', 'Very High']
+        const descriptions = ['Normal','Flash']
         const numberOf_values = values.length
         for (let i = 0; i < numberOf_values; i++) {
           const value = values[i]
@@ -860,7 +858,7 @@ class SendFundsView extends View {
     const estimatedNetworkFee_JSBigInt = new JSBigInt(self.context.monero_utils.estimated_tx_network_fee(
       null, // deprecated - will be removed soon
       self._selected_simplePriority(),
-      '24658' // TODO: grab this from wallet via API request
+      '666','100000' // TODO: grab this from wallet via API request
     ))
     const estimatedTotalFee_JSBigInt = estimatedNetworkFee_JSBigInt // no tx hosting service fee
     //
@@ -889,7 +887,7 @@ class SendFundsView extends View {
     if (xmr_estMaxAmount == null || typeof xmr_estMaxAmount === 'undefined') {
       return null
     }
-    const xmr_estMaxAmount_str = monero_amount_format_utils.formatMoney(xmr_estMaxAmount)
+    const xmr_estMaxAmount_str = beldex_amount_format_utils.formatMoney(xmr_estMaxAmount)
     //
     const displayCcySymbol = self.ccySelectLayer.Component_selected_ccySymbol()
     if (displayCcySymbol != Currencies.ccySymbolsByCcy.XMR) {
@@ -924,7 +922,7 @@ class SendFundsView extends View {
   _new_estimatedNetworkFee_displayString () {
     const self = this
     const estimatedTotalFee_JSBigInt = self.new_xmr_estFeeAmount()
-    const estimatedTotalFee_str = monero_amount_format_utils.formatMoney(estimatedTotalFee_JSBigInt)
+    const estimatedTotalFee_str = beldex_amount_format_utils.formatMoney(estimatedTotalFee_JSBigInt)
     const estimatedTotalFee_moneroAmountDouble = parseFloat(estimatedTotalFee_str)
 
     // const estimatedTotalFee_moneroAmountDouble = 0.028
@@ -1110,9 +1108,9 @@ class SendFundsView extends View {
       )
       finalizable_text = `~ ${displayFormattedAmount} ${displayCcySymbol}`
     } else {
-      const moneroAmountDouble_atomicPlaces = xmrAmountDouble * Math.pow(10, monero_config.coinUnitPlaces)
+      const moneroAmountDouble_atomicPlaces = xmrAmountDouble * Math.pow(10, beldex_config.coinUnitPlaces)
       const moneroAmount = new JSBigInt(moneroAmountDouble_atomicPlaces)
-      const formatted_moneroAmount = monero_amount_format_utils.formatMoney(moneroAmount)
+      const formatted_moneroAmount = beldex_amount_format_utils.formatMoney(moneroAmount)
       finalizable_text = `= ${formatted_moneroAmount} ${Currencies.ccySymbolsByCcy.XMR}`
     }
     const final_text = finalizable_text
@@ -1167,7 +1165,7 @@ class SendFundsView extends View {
     }
     {
       const sel = self.prioritySelectLayer
-      const defaultVal = monero_sendingFunds_utils.default_priority()
+      const defaultVal = utils.default_priority()
       const opts = sel.options
       for (let j = 0; j < opts.length; j++) {
         const opt = opts[j]
@@ -1953,16 +1951,16 @@ class SendFundsView extends View {
         //
         const code = jsQR(imageData.data, imageData.width, imageData.height)
         if (!code || !code.location) {
-          self.validationMessageLayer.SetValidationError('MyMonero was unable to find a QR code in that image.')
+          self.validationMessageLayer.SetValidationError('Beldex was unable to find a QR code in that image.')
           return
         }
         const stringData = code.data
         if (!stringData) {
-          self.validationMessageLayer.SetValidationError('MyMonero was unable to decode a QR code from that image.')
+          self.validationMessageLayer.SetValidationError('Beldex was unable to decode a QR code from that image.')
           return
         }
         if (typeof stringData !== 'string') {
-          self.validationMessageLayer.SetValidationError('MyMonero was able to decode QR code but got unrecognized result.')
+          self.validationMessageLayer.SetValidationError('Beldex was able to decode QR code but got unrecognized result.')
           return
         }
         const possibleURIString = stringData

@@ -1,5 +1,5 @@
 const persistable_object_utils = require('../../DocumentPersister/persistable_object_utils')
-const JSBigInt = require('@mymonero/mymonero-bigint').BigInteger
+const JSBigInt = require('@bdxi/beldex-bigint').BigInteger
 //
 const CollectionName = 'Wallets'
 exports.CollectionName = CollectionName

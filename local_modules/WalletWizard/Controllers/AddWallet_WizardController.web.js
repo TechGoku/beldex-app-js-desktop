@@ -1,6 +1,6 @@
 'use strict'
 
-const mnemonic_languages = require('@mymonero/mymonero-locales')
+const mnemonic_languages = require('@bdxi/beldex-locales')
 
 const WizardTask_Modes =
 {

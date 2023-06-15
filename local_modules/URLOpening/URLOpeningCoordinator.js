@@ -29,7 +29,7 @@
 "use strict"
 //
 const EventEmitter = require('events')
-const YatMoneroLookup = require('@mymonero/mymonero-yat-lookup');
+const YatMoneroLookup = require('@bdxi/beldex-yat-lookup');
 
 let yatMoneroLookup = new YatMoneroLookup({});
 //

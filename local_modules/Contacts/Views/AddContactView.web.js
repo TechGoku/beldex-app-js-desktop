@@ -2,14 +2,14 @@
 
 const View = require('../../Views/View.web')
 const ContactFormView = require('./ContactFormView.web')
-const monero_paymentID_utils = require('@mymonero/mymonero-paymentid-utils')
+const paymentTool = require('@bdxi/beldex-paymentid-utils')
 const commonComponents_activityIndicators = require('../../MMAppUICommonComponents/activityIndicators.web')
 const commonComponents_actionButtons = require('../../MMAppUICommonComponents/actionButtons.web')
 const commonComponents_forms = require('../../MMAppUICommonComponents/forms.web')
 const jsQR = require('jsqr')
 const monero_requestURI_utils = require('../../MoneroUtils/monero_requestURI_utils')
 // Yat import
-const YatMoneroLookup = require('@mymonero/mymonero-yat-lookup')
+const YatMoneroLookup = require('@bdxi/beldex-yat-lookup')
 const yatMoneroLookup = new YatMoneroLookup({})
 
 class AddContactView extends ContactFormView {
@@ -304,7 +304,7 @@ class AddContactView extends ContactFormView {
     
     function _proceedTo_addContact_paymentID (paymentID__toSave, cached_OAResolved_XMR_address__orUndefined) {
       const paymentID_exists = paymentID__toSave && typeof paymentID__toSave !== 'undefined'
-      const paymentID_existsAndIsNotValid = paymentID_exists && monero_paymentID_utils.IsValidPaymentIDOrNoPaymentID(paymentID__toSave) === false
+      const paymentID_existsAndIsNotValid = paymentID_exists && paymentTool.IsValidPaymentIDOrNoPaymentID(paymentID__toSave) === false
       if (paymentID_existsAndIsNotValid === true) {
         __reEnableForm()
         self.validationMessageLayer.SetValidationError('Please enter a valid payment ID.')

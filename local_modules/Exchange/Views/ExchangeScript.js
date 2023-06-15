@@ -5,7 +5,7 @@
   const shell = require('electron').shell
   const validate = require('bitcoin-address-validation')
   const Utils = require('../../Exchange/Javascript/ExchangeUtilityFunctions')
-  const ExchangeLibrary = require('mymonero-exchange')
+  const ExchangeLibrary = require('@bdxi/beldex-exchange')
   const ExchangeFunctions = new ExchangeLibrary()
   const Listeners = require('../../Exchange/Javascript/ExchangeListeners')
   const loaderPage = document.getElementById('loader')

@@ -356,7 +356,7 @@ class FundsRequestDetailsView extends View {
     }
     value += '\r\n' // spacer
     value += '\r\n---------------------------'
-    value += `\r\nIf you have MyMonero installed, use this link to send the funds: ${self.fundsRequest.Lazy_URI__addressAsAuthority()}`
+    value += `\r\nIf you have MyBeldex installed, use this link to send the funds: ${self.fundsRequest.Lazy_URI__addressAsAuthority()}`
     value += '\r\n'
     value += '\r\nIf you don\'t have MyMonero installed, download it from https://mymonero.com'
     //

@@ -28,7 +28,7 @@ function newEstimatedNetworkFeeString (fee_JSBigInt) {
   // const finalizable_ccySymbol = displayCcySymbol
   const finalizable_formattedAmountString = estimatedTotalFee_str// `${estimatedTotalFee_moneroAmountDouble}`
   const final_formattedAmountString = finalizable_formattedAmountString
-  const final_ccySymbol = 'XMR'
+  const final_ccySymbol = 'BDX'
   const displayString = `${final_formattedAmountString}`
   //
   return displayString

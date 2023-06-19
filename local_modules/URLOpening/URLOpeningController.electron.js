@@ -50,7 +50,7 @@ class URLOpeningController extends URLOpeningController_Abstract {
       const { dialog } = require('electron')
       dialog.showMessageBox({
         buttons: ['OK'],
-        message: 'Sorry, that does not appear to be a valid Monero URL.'
+        message: 'Sorry, that does not appear to be a valid Beldex URL.'
       })
     }
     if (self.context.app.isReady()) {

@@ -13,14 +13,14 @@ const mnemonic_languages = require('@bdxi/beldex-locales')
 const wallet_persistence_utils = require('./wallet_persistence_utils')
 const WalletHostPollingController = require('../Controllers/WalletHostPollingController')
 const string_cryptor = require('../../symmetric_cryptor/symmetric_string_cryptor')
-const monero_app_bridge = require("@mymonero/mymonero-app-bridge")
+const beldex_app_bridge = require("@bdxi/beldex-app-bridge")
 const wallet_currencies =
 {
-  xmr: 'xmr'
+  xmr: 'bdx'
 }
 const humanReadable__wallet_currencies =
 {
-  xmr: 'XMR'
+  xmr: 'BDX'
 }
 //
 // Shared utility functions (these can be factored out)
@@ -1134,7 +1134,7 @@ class Wallet extends EventEmitter {
       self.context.userIdleInWindowController.ReEnable_userIdle()
     }
     const raw_amount_string = destinations[0].send_amount
-    const statusUpdate_messageBase = isSweepTx ? 'Sending wallet balance…' : `Sending ${raw_amount_string} XMR…`
+    const statusUpdate_messageBase = isSweepTx ? 'Sending wallet balance…' : `Sending ${raw_amount_string} BDX…`
     const processStepMessageSuffix_byEnumVal =
 		{
 		  0: '', // 'none'

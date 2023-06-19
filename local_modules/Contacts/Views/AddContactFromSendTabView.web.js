@@ -44,7 +44,7 @@ class AddContactFromSendTabView extends AddContactFromOtherTabView {
   }
 
   _overridable_initial_inlineMessageString () {
-    return 'Your Monero is on its way.'
+    return 'Your Beldex is on its way.'
   }
 
   _overridable_initial_inlineMessage_wantsXButtonHidden () {

@@ -61,7 +61,7 @@ walletSelectorClickListener = function (event) {
     walletElement.classList.remove('active')
     walletIcon.style.backgroundImage = `url('../../../assets/img/wallet-${dataAttributes.swatch}@3x.png'`
     walletLabel.innerText = dataAttributes.walletlabel
-    walletBalance.innerText = dataAttributes.walletbalance + ' XMR'
+    walletBalance.innerText = dataAttributes.walletbalance + ' BDX'
     const walletSelector = document.getElementById('wallet-selector')
     walletSelector.dataset.walletchosen = true
     clearCurrencies()
